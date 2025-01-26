@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="theme-color" content="#34A5DA">
     <link rel="icon" sizes="192x192" href="{{ url_for('static', filename='images/android-launchericon-192-192.png') }}">
-   
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}" />
 
@@ -27,8 +27,9 @@
     <div class="container mt-5">
         <!-- Light/Dark Mode Toggle -->
         <div class="text-end">
-            <button id="toggle-mode" class="btn">
+            <button id="toggle-mode" class="btn btn-outline-dark">
                 <i id="toggle-icon" class="fas fa-moon"></i>
+                <span id="toggle-text">Dark Mode</span>
             </button>
         </div>
 
@@ -37,7 +38,7 @@
         <hr class="section-divider">
 
         <!-- Form Section -->
-        <form id="calculator-form" class="mt-4 p-4 rounded shadow">
+        <form id="calculator-form" class="mt-4 p-4 rounded shadow bg-light">
             <div class="mb-3">
                 <label for="ph" class="form-label">Soil pH:</label>
                 <input type="number" step="0.01" class="form-control" id="ph" name="ph" placeholder="Eg., 5.5" required>
@@ -61,7 +62,7 @@
         </form>
 
         <!-- Results Section -->
-        <div id="results" class="mt-4">
+        <div id="results" class="mt-4 p-4 rounded shadow bg-white">
             <h3 class="text-center">Results</h3>
             <p><strong>Rate:</strong> <span id="rate">N/A</span></p>
             <p><strong>Total:</strong> <span id="total">N/A</span></p>
@@ -82,5 +83,37 @@
     </script>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <script>
+        // Dark Mode Toggle Functionality
+        const toggleModeBtn = document.getElementById('toggle-mode');
+        const toggleIcon = document.getElementById('toggle-icon');
+        const toggleText = document.getElementById('toggle-text');
+        const body = document.body;
+
+        // Load previously stored theme
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggleIcon.classList.replace('fa-moon', 'fa-sun');
+            toggleText.textContent = "Light Mode";
+            toggleModeBtn.classList.replace('btn-outline-dark', 'btn-outline-light');
+        }
+
+        toggleModeBtn.addEventListener('click', function () {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                toggleIcon.classList.replace('fa-sun', 'fa-moon');
+                toggleText.textContent = "Dark Mode";
+                toggleModeBtn.classList.replace('btn-outline-light', 'btn-outline-dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-mode');
+                toggleIcon.classList.replace('fa-moon', 'fa-sun');
+                toggleText.textContent = "Light Mode";
+                toggleModeBtn.classList.replace('btn-outline-dark', 'btn-outline-light');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>
