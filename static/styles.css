@@ -50,6 +50,10 @@ button.btn-primary:hover {
     background-color: #0056b3;
 }
 
+button.btn-primary:focus {
+    outline: 2px solid #0056b3;
+}
+
 /* Results Section */
 #results {
     padding: 1.5rem;
@@ -63,4 +67,28 @@ body.dark-mode #results {
     background-color: #2e2e2e;
     color: #e0e0e0;
     border: 1px solid #4e4e4e;
+}
+
+/* Section Separators */
+.section-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 1.5rem 0;
+}
+
+body.light-mode .section-divider {
+    border-top: 1px solid #ccc;
+}
+
+/* Icon Toggle Button */
+#toggle-mode {
+    font-size: 1.5rem;
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#toggle-mode:hover {
+    color: #007bff;
 }

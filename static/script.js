@@ -25,7 +25,6 @@ document.getElementById('calculator-form').addEventListener('submit', function (
 // Toggle Light/Dark Mode with Icon Change
 const toggleModeButton = document.getElementById('toggle-mode');
 const toggleIcon = document.getElementById('toggle-icon');
-
 toggleModeButton.addEventListener('click', () => {
     const body = document.body;
     const isDarkMode = body.classList.contains('dark-mode');
